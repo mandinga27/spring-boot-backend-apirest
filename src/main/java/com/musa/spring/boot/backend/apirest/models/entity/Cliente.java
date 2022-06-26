@@ -13,9 +13,21 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 
+//name es el atributo para ijndicar el nombre de la tabla, en caso de que la tabla se llame igual, se puede omitir
+//como buena practica en bd las tablas se escriben en minuscula y en plural
+
 @Entity
-@Table(name="clientes")
-public class Cliente implements Serializable { //como buena practica se crea el serializable
+@Table(name="clientes") 
+public class Cliente implements Serializable { 
+	/*
+	 * 	la serializacion de un objeto consiste en generar un secuencia de bytes lista para su almacenamiento o transmision.
+	 * despues mediante la deserializacion, el estado original del objeto se puede reconstruir
+	 */
+	
+	//como buena practica se crea la interfaz serializable, ocn spring y formularios para poder guardar los 
+	//atributos en la sesion
+	
+	//las clases entities (de jpa) permiten tener persistencia a una bd mapeada a una tabla
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -25,12 +37,13 @@ public class Cliente implements Serializable { //como buena practica se crea el 
 	private String apellido;
 	private String email;
 	
+	
 	@Column(name="create_at") //permite crear con ese nombre el atributo en la bd
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.DATE) //permite pasar del formato date de java a formato date de sql
 	private Date createAt;
 
 	public Long getId() {
-		return id;
+		return id; 
 	}
 
 	public void setId(Long id) {
