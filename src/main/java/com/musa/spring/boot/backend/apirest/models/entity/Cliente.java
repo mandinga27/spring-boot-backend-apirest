@@ -36,6 +36,7 @@ public class Cliente implements Serializable {
 	private String nombre;
 	private String apellido;
 	private String email;
+	private String telefono;
 	
 	
 	@Column(name="create_at") //permite crear con ese nombre el atributo en la bd
@@ -80,6 +81,14 @@ public class Cliente implements Serializable {
 
 	public void setCreateAt(Date createAt) {
 		this.createAt = createAt;
+	}
+
+	public String getTelefono() {
+		return telefono;
+	}
+
+	public void setTelefono(String telefono) {
+		this.telefono = telefono;
 	}
 
 	private static final long serialVersionUID = 1L;
