@@ -1,6 +1,6 @@
 package com.musa.spring.boot.backend.apirest.models.entity;
 
-import java.io.Serializable;
+import java.io.Serializable; 
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -13,7 +13,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 
-//name es el atributo para ijndicar el nombre de la tabla, en caso de que la tabla se llame igual, se puede omitir
+//name es el atributo para jndicar el nombre de la tabla, en caso de que la tabla se llame igual, se puede omitir
 //como buena practica en bd las tablas se escriben en minuscula y en plural
 
 @Entity
@@ -91,5 +91,5 @@ public class Cliente implements Serializable {
 		this.telefono = telefono;
 	}
 
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L; //atributo estatico que es requerido al crear el serializable
 }
