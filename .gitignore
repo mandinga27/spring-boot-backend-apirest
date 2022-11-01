@@ -24,3 +24,9 @@ hs_err_pid*
 
 # intellij ide Files #
 .idea
+
+# gradle files
+.gradle
+
+# settings file
+.settings

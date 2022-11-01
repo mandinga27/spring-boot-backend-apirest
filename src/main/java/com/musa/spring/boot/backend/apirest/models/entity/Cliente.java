@@ -36,8 +36,8 @@ public class Cliente implements Serializable {
 	private String nombre;
 	private String apellido;
 	private String email;
-	
-	
+	private String telefono;
+
 	@Column(name="create_at") //permite crear con ese nombre el atributo en la bd
 	@Temporal(TemporalType.DATE) //permite pasar del formato date de java a formato date de sql
 	private Date createAt;
@@ -72,6 +72,14 @@ public class Cliente implements Serializable {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public String getTelefono() {
+		return telefono;
+	}
+
+	public void setTelefono(String telefono) {
+		this.telefono = telefono;
 	}
 
 	public Date getCreateAt() {
