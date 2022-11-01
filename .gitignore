@@ -26,7 +26,7 @@ hs_err_pid*
 .idea
 
 # gradle files
-.gradle
+.gradle/
 
 # settings file
-.settings
+.settings/
