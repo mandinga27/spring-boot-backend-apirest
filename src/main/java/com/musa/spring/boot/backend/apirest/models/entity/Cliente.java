@@ -108,5 +108,5 @@ public class Cliente implements Serializable {
 		this.createAt = createAt;
 	}
 
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L; //atributo estatico que es requerido al crear el serializable
 }
