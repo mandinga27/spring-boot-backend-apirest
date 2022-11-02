@@ -1,19 +1,23 @@
 package com.musa.spring.boot.backend.apirest.controllers;
 
-import com.musa.spring.boot.backend.apirest.models.dao.IClienteDao;
+import java.util.List;
+
 import com.musa.spring.boot.backend.apirest.models.entity.Cliente;
 import com.musa.spring.boot.backend.apirest.models.services.IclienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
 
+@RestController
+@RequestMapping("/api") //url de primer nivel
 public class ClienteRestController {
 
     @Autowired
     private IclienteService clienteService;
 
-    @GetMapping("/clientes")
+    @GetMapping("/clientes") //url de segundo nivel que es para el metodo
     public List<Cliente> index() {
         return clienteService.findAll();
     }
