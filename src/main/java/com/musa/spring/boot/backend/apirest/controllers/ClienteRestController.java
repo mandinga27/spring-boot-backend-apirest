@@ -3,7 +3,7 @@ package com.musa.spring.boot.backend.apirest.controllers;
 import java.util.List;
 
 import com.musa.spring.boot.backend.apirest.models.entity.Cliente;
-import com.musa.spring.boot.backend.apirest.models.services.IclienteService;
+import com.musa.spring.boot.backend.apirest.models.services.IClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class ClienteRestController {
 
     @Autowired
-    private IclienteService clienteService;
+    private IClienteService clienteService;
 
     @GetMapping("/clientes") //url de segundo nivel que es para el metodo
     public List<Cliente> index() {
