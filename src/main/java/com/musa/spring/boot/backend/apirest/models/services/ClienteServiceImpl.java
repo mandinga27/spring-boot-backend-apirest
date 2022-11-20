@@ -1,17 +1,18 @@
-package com.musa.spring.boot.backend.apirest.models.services;
+package  com.musa.spring.boot.backend.apirest.models.services;
 
-import com.musa.spring.boot.backend.apirest.models.dao.IClienteDao;
-import com.musa.spring.boot.backend.apirest.models.entity.Cliente;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
+import com.musa.spring.boot.backend.apirest.models.dao.IClienteDao;
+import com.musa.spring.boot.backend.apirest.models.entity.Cliente;
 
-@Service //tipo de estereotipo de component, la decora, es un beans
-public class ClienteServiceImpl implements IClienteService {
+@Service
+public class  ClienteServiceImpl implements IClienteService {
 
-    @Autowired //autowired inyeccion de dependencias, cliente dao
+    @Autowired
     private IClienteDao clienteDao;
 
     @Override
@@ -20,16 +21,22 @@ public class ClienteServiceImpl implements IClienteService {
         return (List<Cliente>) clienteDao.findAll();
     }
 
+    @Override
+    @Transactional
+    public void save(Cliente cliente) {
+        clienteDao.save(cliente);
+    }
 
+    @Override
     @Transactional(readOnly = true)
-    public Cliente findById(Long id) { return clienteDao.findById(id).orElse(null);}
+    public Cliente findById(Long id) {
+        return clienteDao.findById(id).orElse(null);
+    }
 
-
+    @Override
     @Transactional
-    public Cliente save(Cliente cliente) { return clienteDao.save(cliente);}
+    public void delete(Cliente cliente) {
+        clienteDao.delete(cliente);
+    }
 
-
-    @Transactional
-    public void delete(Long id) { clienteDao.deleteById(id);}
 }
-

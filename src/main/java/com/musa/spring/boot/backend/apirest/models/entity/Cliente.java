@@ -3,14 +3,7 @@ package com.musa.spring.boot.backend.apirest.models.entity;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 
 
 //name es el atributo para ijndicar el nombre de la tabla, en caso de que la tabla se llame igual, se puede omitir
@@ -40,6 +33,11 @@ public class Cliente implements Serializable {
 	@Column(name="create_at") //permite crear con ese nombre el atributo en la bd
 	@Temporal(TemporalType.DATE) //permite pasar del formato date de java a formato date de sql
 	private Date createAt;
+
+	@PrePersist
+	public void prePersists() {
+		createAt = new Date();
+	}
 
 	public Long getId() {
 		return id; 
