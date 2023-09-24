@@ -34,7 +34,7 @@ pipeline {
           --file '/build/libs/spring-boot-backend-apirest-0.0.1-SNAPSHOT.jar' \
       }
     }
-    */
+    
     stage('Store Baseline') {
             steps {
                 script {
@@ -48,7 +48,7 @@ pipeline {
                 }
             }
         }
-
+      */
 
   }
   /*
