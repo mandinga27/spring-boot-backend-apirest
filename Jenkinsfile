@@ -4,11 +4,11 @@ pipeline {
     gradle '7.1'
   }
   stages {
-    stage('Maven Build') {
+    stage('Gradle Build') {
       steps {
-        //bat 'gradle --version'
+        bat 'gradle --version'
         //bat 'gradle build'
-        bat 'java --version'
+        //bat 'java --version'
       }
     }
 
