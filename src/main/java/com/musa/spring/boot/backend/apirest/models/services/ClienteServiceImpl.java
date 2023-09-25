@@ -22,5 +22,9 @@ public class ClienteServiceImpl implements IClienteService{
 		return (List<Cliente>) clienteDao.findAll();
 	}
 
-	
+
+	@Override
+	public List<Cliente> findAll() {
+		return null;
+	}
 }
