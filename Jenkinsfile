@@ -21,6 +21,7 @@ pipeline {
           --veracode_api_key "1e1e28b713888d239260989ddab340aff8162f5c462a42c4dbf40d109eabfeba2968e1785c76e7fab6cca9e55db0c5ca55ac2172c0b62b7626957ed78e1bcb96" \
           --file "build/libs/spring-boot-backend-apirest-0.0.1-SNAPSHOT.jar" \
           --fail_on_severity="Very High, High" \
+          --json_output_file "baseline.json" \
           --baseline_file "%WORKSPACE%/results.json"'
       }
     }
@@ -29,8 +30,8 @@ pipeline {
                 script {
                     try {
                         input(message: 'Store results as baseline for future scans?', ok: 'Yes')
-                        bat 'cp baseline.json build-baseline.json'
-                        bat 'cp results.json baseline.json'
+                        bat 'copy baseline.json build-baseline.json'
+                        bat 'copy results.json baseline.json'
                     } catch (err) {
 
                     }
