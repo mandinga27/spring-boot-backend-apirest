@@ -4,7 +4,7 @@ pipeline {
     gradle '7.1'
   }
   stages {
-    stage('Gradle Build') {
+    stage('BuildCodigo') {
       steps {
         bat 'gradle --version'
         bat 'gradle clean build'
@@ -12,7 +12,7 @@ pipeline {
         //bat 'java --version'
       }
     }
-    stage('Veracode Pipeline Scan') {
+    stage('securityAnalysis') {
       steps {
         //bat 'curl -O https://downloads.veracode.com/securityscan/pipeline-scan-LATEST.zip'
         //bat 'unzip pipeline-scan-LATEST.zip pipeline-scan.jar'
@@ -25,7 +25,7 @@ pipeline {
           --baseline_file "%WORKSPACE%/results.json"'
       }
     }
-    stage('Store Baseline File') {
+    stage('BaselineFile') {
             steps {
                 script {
                     try {
