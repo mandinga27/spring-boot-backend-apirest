@@ -36,7 +36,13 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - name: saludos
+      - name: saludo
+        run: echo "Hola Mundo"
+  despedida:
+    needs: saludo
+    runs-on: ubuntu-latest
+    steps:
+      - name: despedida
         run: echo "Hola Mundo"
 
 
