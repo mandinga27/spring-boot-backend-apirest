@@ -57,10 +57,10 @@ jobs:
         with:
           java-version: '11'
       - name: SonarCloud Scan
-        uses: jinguji/sonarcloud-gradle-github-action@v2
-        with:
-          sonar-token: ${{ secrets.SONAR_TOKEN }}
+        uses: SonarSource/sonarcloud-github-action@master
+        #uses: jinguji/sonarcloud-gradle-github-action@v2
         env:
+          SONAR-TOKEN: ${{ secrets.SONARCLOUD_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 
