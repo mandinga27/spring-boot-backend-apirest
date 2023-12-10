@@ -48,6 +48,7 @@ jobs:
         run: echo "Hola Mundo"
 
   sonarCloudTrigger:
+    needs: despedida
     name: SonarCloud Trigger
     runs-on: ubuntu-latest
     steps:
