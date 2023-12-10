@@ -32,18 +32,35 @@ jobs:
       uses: gradle/gradle-build-action@bd5760595778326ba7f1441bcf7e88b49de61a25 # v2.6.0
       with:
         arguments: build -x test
+
   saludo:
     needs: build
     runs-on: ubuntu-latest
     steps:
       - name: saludo
         run: echo "Hola Mundo"
+
   despedida:
     needs: saludo
     runs-on: ubuntu-latest
     steps:
       - name: despedida
         run: echo "Hola Mundo"
+
+  sonarCloudTrigger:
+    name: SonarCloud Trigger
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-java@v1
+        with:
+          java-version: '11'
+      - name: SonarCloud Scan
+        uses: jinguji/sonarcloud-gradle-github-action@v2
+        with:
+          sonar-token: ${{ secrets.SONAR_TOKEN }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 
 
