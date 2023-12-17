@@ -26,12 +26,18 @@ jobs:
       with:
         java-version: '11'
         distribution: 'temurin'
+
     - name: Make gradlew executable
       run: chmod +x ./gradlew
+
     - name: Build with Gradle
-      uses: gradle/gradle-build-action@bd5760595778326ba7f1441bcf7e88b49de61a25 # v2.6.0
+      run: ./gradlew build -x test
+
+    - name: Archive artifacts
+      uses: actions/upload-artifact@v2
       with:
-        arguments: build -x test
+        name: artifacts
+        path: build/libs/spring-boot-backend-apirest.jar
 
   saludo:
     needs: build
@@ -48,19 +54,14 @@ jobs:
         run: echo "Hola Mundo"
 
   sonarCloudTrigger:
-    needs: despedida
+    needs: build
     name: SonarCloud Trigger
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-java@v1
+      - uses: actions/checkout@v3
+      - uses: actions/setup-java@v3
         with:
           java-version: '11'
-
-      - name: Build with Gradle
-        run: |
-          chmod +x ./gradlew
-          ./gradlew build -x test
 
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
