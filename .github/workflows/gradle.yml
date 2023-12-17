@@ -56,6 +56,10 @@ jobs:
       - uses: actions/setup-java@v1
         with:
           java-version: '11'
+
+      - name: Build with Gradle
+        run: ./gradlew build -x test
+
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
         env:
