@@ -38,51 +38,39 @@ jobs:
       with:
         name: artifacts
         path: build/libs/spring-boot-backend-apirest.jar
+        run: ls -R
 
-  saludo:
+  analize:
     needs: build
     runs-on: ubuntu-latest
-    steps:
-      - name: saludo
-        run: echo "Hola Mundo"
 
-  despedida:
-    needs: saludo
-    runs-on: ubuntu-latest
     steps:
-      - name: despedida
-        run: echo "Hola Mundo"
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
-  sonarCloudTrigger:
-    needs: despedida
-    name: SonarCloud Trigger
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-java@v1
+      - name: Set up JDK 11
+        uses: actions/setup-java@v2
         with:
+          distribution: 'temurin'
           java-version: '11'
 
-      - name: Build with Gradle
-        run: |
-          chmod +x ./gradlew
-          ./gradlew build -x test
-
-      - name: SonarCloud Scan
-        uses: SonarSource/sonarcloud-github-action@master
+      - name: Analyze with SonarCloud
+        #uses: SonarSource/sonarcloud-github-action@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONARCLOUD_TOKEN }}
           #run: ./gradlew sonarqube
-        with:
-          args: >
-              ./gradlew build -x test sonarqube
-              -Dsonar.projectKey=mandinga27_spring-boot-backend-apirest
-              -Dsonar.organization=mandinga27
-              -Dsonar.sources=src/main
-              -Dsonar.tests=src/test
-              -Dsonar.java.binaries=target/classes 
-              -Dsonar.qualitygate.wait=true
+        run: |
+          ./gradlew  sonarqube \
+          -Dsonar.projectKey=mandinga27_spring-boot-backend-apirest \
+          -Dsonar.organization=mandinga27 \
+          -Dsonar.sources=src/main \
+          -Dsonar.tests=src/test \
+          -Dsonar.java.binaries=target/classes \ 
+          -Dsonar.qualitygate.wait=true \
+          -Dsonar.host.url=https://sonarcloud.io 
+          
+        
 
 
 
