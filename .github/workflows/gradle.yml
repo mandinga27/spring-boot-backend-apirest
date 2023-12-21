@@ -79,7 +79,7 @@ jobs:
           #run: ./gradlew sonarqube
         with:
           args: >
-               sonarqube
+              ./gradlew build -x test sonarqube
               -Dsonar.projectKey=mandinga27_spring-boot-backend-apirest
               -Dsonar.organization=mandinga27
               -Dsonar.sources=src/main
