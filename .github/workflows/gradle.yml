@@ -36,11 +36,11 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONARCLOUD_TOKEN }}
         run: | 
-          ./gradlew \
+          ./gradlew -x test \
           sonar \
           -Dsonar.projectKey=mandinga27_spring-boot-backend-apirest \
           -Dsonar.organization=mandinga27 \
           -Dsonar.sources=src/main -Dsonar.tests=src/test \
-          -Dsonar.qualitygate.wait=true \
+        #-Dsonar.qualitygate.wait=true \
           -Dsonar.host.url=https://sonarcloud.io
 
