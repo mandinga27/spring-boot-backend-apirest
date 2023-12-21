@@ -43,4 +43,4 @@ jobs:
           -Dsonar.sources=src/main -Dsonar.tests=src/test \
           -Dsonar.qualitygate.wait=true \
           -Dsonar.host.url=https://sonarcloud.io
-
+ 
