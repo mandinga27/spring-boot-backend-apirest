@@ -63,7 +63,7 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONARCLOUD_TOKEN }}
           #run: ./gradlew sonarqube
         run : |
-          ./gradlew  sonarqube \
+          sonarqube \
           -Dsonar.projectKey=mandinga27_spring-boot-backend-apirest \
           -Dsonar.organization=mandinga27 \
           -Dsonar.sources=src/main \
