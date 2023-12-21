@@ -43,4 +43,6 @@ jobs:
           -Dsonar.sources=src/main -Dsonar.tests=src/test \
           -Dsonar.qualitygate.wait=true \
           -Dsonar.host.url=https://sonarcloud.io     
- 
+
+      - name: SonarQube Quality Gate Report
+        uses: phwt/sonarqube-quality-gate-action@v1.4.1
