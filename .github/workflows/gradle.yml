@@ -42,7 +42,7 @@ jobs:
           -Dsonar.organization=mandinga27 \
           -Dsonar.sources=src/main -Dsonar.tests=src/test \
           -Dsonar.qualitygate.wait=true \
-          -Dsonar.host.url=${{ secrets.SONAR_HOST_URL }} \
+          -Dsonar.host.url=https://sonarcloud.io
 
   copare:
     needs: analize
