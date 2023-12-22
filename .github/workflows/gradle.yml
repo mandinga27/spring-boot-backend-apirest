@@ -44,9 +44,7 @@ jobs:
           -Dsonar.organization=mandinga27 \
           -Dsonar.sources=src/main -Dsonar.tests=src/test \
           -Dsonar.qualitygate.wait=true \
-          -Dsonar.host.url=https://sonarcloud.io \
-      - name: Output result
-        run: |
-          echo "${{ steps.quality-gate-check.outputs.project-status }}"
-          echo "${{ steps.quality-gate-check.outputs.quality-gate-result }}"
+          -Dsonar.host.url=${{ secrets.SONAR_HOST_URL }} \
+      
+        
  
