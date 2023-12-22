@@ -20,9 +20,6 @@ jobs:
         with:
           java-version: 11
           distribution: 'adopt'
-          # The package type (jdk, jre, jdk+fx, jre+fx)
-          #java-package: # optional, default is jdk
-          # Path to where the compressed JDK is located
           cache: gradle
           
   Analysis:
