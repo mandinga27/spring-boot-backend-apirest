@@ -13,10 +13,7 @@ permissions:
 jobs:
   setup:
     runs-on: ubuntu-latest
-    
-    steps:
 
-          
   Analysis:
     runs-on: ubuntu-latest
 
