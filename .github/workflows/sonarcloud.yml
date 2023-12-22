@@ -18,9 +18,11 @@ jobs:
       - name: Setup Java JDK
       - uses: actions/setup-java@v2.5.1
         with:
-          java-version: 11
+          java-version: '11'
           distribution: 'adopt'
           cache: gradle
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
           
   Analysis:
     runs-on: ubuntu-latest
