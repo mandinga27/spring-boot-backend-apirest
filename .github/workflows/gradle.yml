@@ -45,7 +45,6 @@ jobs:
           -Dsonar.sources=src/main -Dsonar.tests=src/test \
           -Dsonar.qualitygate.wait=true \
           -Dsonar.host.url=https://sonarcloud.io \
-          sleep: 5
       - name: Output result
         run: |
           echo "${{ steps.quality-gate-check.outputs.project-status }}"
