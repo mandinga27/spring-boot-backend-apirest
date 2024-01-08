@@ -23,13 +23,13 @@ jobs:
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
       - name: Gradle Build Action
-        uses: gradle/gradle-build-action@982da8e78c05368c70dac0351bb82647a9e9a5d2
+        uses: gradle/gradle-build-action@v2.11.1
         #uses: gradle/gradle-build-action@v2.11.1
         #run: |
         #  ./gradlew build
       - name: SonarCloud Scan Review
-        uses: SonarSource/sonarcloud-github-action@master
-        #uses: jinguji/sonarcloud-gradle-github-action@v2
+        #uses: SonarSource/sonarcloud-github-action@master
+        uses: jinguji/sonarcloud-gradle-github-action@v2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONARCLOUD_TOKEN }}
