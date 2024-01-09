@@ -2,7 +2,7 @@ name: SonarCloud analysis
 
 on:
   push:
-    branches: [ "main", "develop2" ]
+    branches: [ "main", "develop2", "develop" ]
   pull_request:
     branches: [ "main" ]
   workflow_dispatch:
@@ -41,3 +41,11 @@ jobs:
             -Dsonar.sources=src/main -Dsonar.tests=src/test \
             -Dsonar.qualitygate.wait=true \                 
             -Dsonar.host.url=https://sonarcloud.io
+
+      - name: SonarQube Quality Gate check
+        uses: sonarsource/sonarqube-quality-gate-action@master
+        env:
+          SONAR_TOKEN: ${{ secrets.SONARCLOUD_TOKEN }}
+          SONAR_HOST_URL: https://sonarcloud.io
+        with:
+          scanMetadataReportFile: build/sonar/report-task.txt
