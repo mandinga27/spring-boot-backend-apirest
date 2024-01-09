@@ -24,6 +24,7 @@ jobs:
         run: |
           chmod +x gradlew
           echo ${{ github.workspace }}/build
+          echo ls -la ${{ github.workspace }}/build
           echo $GITHUB_WORKSPACE
       - name: Gradle Build Action
         uses: gradle/gradle-build-action@v2.11.1
