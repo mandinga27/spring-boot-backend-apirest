@@ -23,7 +23,8 @@ jobs:
       - name: Grant execute permission for gradlew
         run: |
           chmod +x gradlew
-          echo {{ '$GITHUB_WORKSPACE' }}
+          echo ${{ github.workspace }}
+          echo $GITHUB_WORKSPACE
       - name: Gradle Build Action
         uses: gradle/gradle-build-action@v2.11.1
         #uses: gradle/gradle-build-action@v2.11.1
