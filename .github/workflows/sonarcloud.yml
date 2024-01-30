@@ -31,8 +31,8 @@ jobs:
       - name: Gradle Build Action
         uses: gradle/gradle-build-action@v2.11.1
         #uses: gradle/gradle-build-action@v2.11.1
-        #run: |
-        #  ./gradlew build
+        run: |
+          ./gradlew build
 
       - name: SonarCloud Scan Review
         uses: SonarSource/sonarcloud-github-action@master
