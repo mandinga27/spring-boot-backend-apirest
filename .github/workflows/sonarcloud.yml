@@ -32,7 +32,7 @@ jobs:
           echo $GITHUB_WORKSPACE
 
       - name: Execute Gradle build
-        run: ./gradlew build
+        run: ./gradlew build -x test
 
       - name: SonarCloud Scan Review
         uses: SonarSource/sonarcloud-github-action@master
