@@ -31,13 +31,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: SonarCloud Action Setup
-        #uses: SonarSource/sonarcloud-github-action@master
-        uses: jinguji/sonarcloud-gradle-github-action@v2
+        uses: SonarSource/sonarcloud-github-action@master
+        #uses: jinguji/sonarcloud-gradle-github-action@v2
 
       - name: Scanner Sonar
         run: |
-          ./gradlew build -x test --no-daemon
-          sonar-scanner
           -Dsonar.projectKey=mandinga27_spring-boot-backend-apirest \
           -Dsonar.organization=mandinga27 \
           -Dsonar.sources=src/main -Dsonar.tests=src/test \
