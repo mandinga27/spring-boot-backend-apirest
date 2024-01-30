@@ -36,7 +36,8 @@ jobs:
 
       - name: SonarCloud Scan Review
         #uses: SonarSource/sonarcloud-github-action@master
-        uses: warchant/setup-sonar-scanner@v7
+        uses: jinguji/sonarcloud-gradle-github-action@v2
+      - name: Scanner Sonar
         run: sonar-scanner
           -Dsonar.projectKey=${{ secrets.SONAR_PROJECT_KEY }} \
           -Dsonar.organization=mandinga27 \
