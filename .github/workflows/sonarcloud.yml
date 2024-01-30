@@ -16,13 +16,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-java@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
           java-version: '17'
           #cache: 'gradle'
       - run: |
-          chmod +x gradlew; ./gradlew build -x test --no-daemon
+          chmod +x gradlew
 
   sonar:
     needs: build
@@ -33,7 +35,9 @@ jobs:
         uses: jinguji/sonarcloud-gradle-github-action@v2
 
       - name: Scanner Sonar
-        run: gradle init sonar-scanner
+        run: |
+          ./gradlew build -x test --no-daemon
+          sonar-scanner
           -Dsonar.projectKey=mandinga27_spring-boot-backend-apirest \
           -Dsonar.organization=mandinga27 \
           -Dsonar.sources=src/main -Dsonar.tests=src/test \
