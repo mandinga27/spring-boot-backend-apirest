@@ -21,6 +21,9 @@ jobs:
           java-version: 17
           distribution: 'temurin'
 
+      - name: Gradle Build Action
+        uses: gradle/gradle-build-action@v2.11.1
+
       - name: Grant execute permission for gradlew
         run: |
           chmod +x gradlew
@@ -28,11 +31,8 @@ jobs:
           echo ls -la '${{ github.workspace }}'/build
           echo $GITHUB_WORKSPACE
 
-      - name: Gradle Build Action
-        uses: gradle/gradle-build-action@v2.11.1
-        #uses: gradle/gradle-build-action@v2.11.1
-        run: |
-          ./gradlew build
+      - name: Execute Gradle build
+        run: ./gradlew build
 
       - name: SonarCloud Scan Review
         uses: SonarSource/sonarcloud-github-action@master
