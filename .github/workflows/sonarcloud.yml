@@ -23,7 +23,7 @@ jobs:
           cache: 'gradle'
           cache-dependency-path: | # optional
             sub-project/*.gradle*
-            sub-project/**/gradle-wrapper.properties
+            sub-project/gradle/wrapper/gradle-wrapper.properties
       - run: ./gradlew build --no-daemon
 
   sonar:
