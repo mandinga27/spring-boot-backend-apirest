@@ -20,16 +20,11 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: '17'
-
-      - name: Gradle Build Action
-        uses: gradle/gradle-build-action@v2.11.1
-      - name: Permission
-        run: |
-          chmod +x gradlew
-          echo ${{ github.workspace }}/build
-          echo ls -la '${{ github.workspace }}'/build
-          echo $GITHUB_WORKSPACE
-          /.gradlew build -x test
+          cache: 'gradle'
+          cache-dependency-path: | # optional
+            sub-project/*.gradle*
+            sub-project/**/gradle-wrapper.properties
+      - run: ./gradlew build --no-daemon
 
   sonar:
     needs: build
