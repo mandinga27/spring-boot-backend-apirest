@@ -39,7 +39,7 @@ jobs:
         uses: jinguji/sonarcloud-gradle-github-action@v2
       - name: Scanner Sonar
         run: sonar-scanner
-          -Dsonar.projectKey=${{ secrets.SONAR_PROJECT_KEY }} \
+          -Dsonar.projectKey=mandinga27_spring-boot-backend-apirest \
           -Dsonar.organization=mandinga27 \
           -Dsonar.sources=src/main -Dsonar.tests=src/test \
           -Dsonar.qualitygate.wait=true \                 
