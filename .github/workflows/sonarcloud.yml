@@ -27,9 +27,8 @@ jobs:
 
       - name: Gradle Build Action
         uses: gradle/gradle-build-action@v2.11.1
-
-      - name: Execute Gradle build
-        run: ./gradlew build -x test
+        with:
+          arguments: build -x test
 
       - name: Grant execute permission for gradlew
         run: |
