@@ -35,18 +35,14 @@ jobs:
         run: ./gradlew build -x test
 
       - name: SonarCloud Scan Review
-        uses: SonarSource/sonarcloud-github-action@master
-        #uses: jinguji/sonarcloud-gradle-github-action@v2
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SONAR_TOKEN: ${{ secrets.SONARCLOUD_TOKEN }}
-        with:
-          args: >
-            -Dsonar.projectKey=mandinga27_spring-boot-backend-apirest \
-            -Dsonar.organization=mandinga27 \
-            -Dsonar.sources=src/main -Dsonar.tests=src/test \
-            -Dsonar.qualitygate.wait=true \                 
-            -Dsonar.host.url=https://sonarcloud.io                          
+        #uses: SonarSource/sonarcloud-github-action@master
+        uses: jinguji/sonarcloud-gradle-github-action@v2
+        run: sonar-scanner
+          -Dsonar.projectKey=${{ secrets.SONAR_PROJECT_KEY }} \
+          -Dsonar.organization=mandinga27 \
+          -Dsonar.sources=src/main -Dsonar.tests=src/test \
+          -Dsonar.qualitygate.wait=true \                 
+          -Dsonar.host.url=https://sonarcloud.io
 
       - name: SonarQube Quality Gate check
         uses: sonarsource/sonarqube-quality-gate-action@master
