@@ -35,8 +35,6 @@ jobs:
         uses: jinguji/sonarcloud-gradle-github-action@v2
 
       - name: Scanner Sonar
-        uses: actions/checkout@v4
-
         run: |
           ./gradlew build -x test --no-daemon
           sonar-scanner
