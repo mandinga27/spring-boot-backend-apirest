@@ -23,16 +23,13 @@ jobs:
 
       - name: Gradle Build Action
         uses: gradle/gradle-build-action@v2.11.1
-
+      - name: Permission
         run: |
           chmod +x gradlew
           echo ${{ github.workspace }}/build
           echo ls -la '${{ github.workspace }}'/build
           echo $GITHUB_WORKSPACE
           /.gradlew build -x test
-        
-
-      - name: Grant execute permission for gradlew
 
   sonar:
     needs: build
