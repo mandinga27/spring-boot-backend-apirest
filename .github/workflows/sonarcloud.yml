@@ -35,7 +35,7 @@ jobs:
         #  ./gradlew build
 
       - name: SonarCloud Scan Review
-        #uses: SonarSource/sonarcloud-github-action@master
+        uses: SonarSource/sonarcloud-github-action@master
         #uses: jinguji/sonarcloud-gradle-github-action@v2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
