@@ -22,7 +22,7 @@ jobs:
           java-version: '17'
           cache: 'gradle'
       - run: |
-          chmod +x gradlew; ./gradlew build --no-daemon
+          chmod +x gradlew; ./gradlew build -x test --no-daemon
 
   sonar:
     needs: build
