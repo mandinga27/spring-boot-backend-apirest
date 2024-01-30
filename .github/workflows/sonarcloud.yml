@@ -24,8 +24,12 @@ jobs:
         with:
           java-version: 17
           distribution: 'temurin'
+
       - name: Gradle Build Action
         uses: gradle/gradle-build-action@v2.11.1
+
+      - name: Execute Gradle build
+        run: ./gradlew build -x test
 
       - name: Grant execute permission for gradlew
         run: |
@@ -33,10 +37,6 @@ jobs:
           echo ${{ github.workspace }}/build
           echo ls -la '${{ github.workspace }}'/build
           echo $GITHUB_WORKSPACE
-
-      - name: Execute Gradle build
-        run: ./gradlew build -x test
-
   sonar:
     needs: build
     runs-on: ubuntu-latest
