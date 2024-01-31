@@ -46,10 +46,9 @@ jobs:
           args: >
             -Dsonar.projectKey=mandinga27_spring-boot-backend-apirest 
             -Dsonar.organization=mandinga27 
-            -Dsonar.java.binaries=spring-boot-backend-apirest/build/libs
-            -Dsonar.sources=/spring-boot-backend-apirest/src
+            -Dsonar.java.binaries=${{ github.workspace }}/build/libs
+            -Dsonar.sources=${{ github.workspace }}/src
             -Dsonar.qualitygate.wait=true 
-            -Dsonar.host.url=https://sonarcloud.io
             -Dsonar.gradle.skipCompile=true
 
       - name: SonarQube Quality Gate check
