@@ -34,6 +34,7 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONARCLOUD_TOKEN }}
         #uses: jinguji/sonarcloud-gradle-github-action@v2
         with:
+          projectBaseDir: .
           args: >
             -Dsonar.projectKey=mandinga27_spring-boot-backend-apirest 
             -Dsonar.organization=mandinga27 
