@@ -38,10 +38,10 @@ jobs:
         #uses: jinguji/sonarcloud-gradle-github-action@v2
         with:
           args: >
-            -Dsonar.projectKey=mandinga27_spring-boot-backend-apirest \
-            -Dsonar.organization=mandinga27 \
-            -Dsonar.sources=src/main -Dsonar.tests=src/test \
-            -Dsonar.qualitygate.wait=true \                 
+            -Dsonar.projectKey=mandinga27_spring-boot-backend-apirest 
+            -Dsonar.organization=mandinga27 
+            -Dsonar.sources=src/main -Dsonar.tests=src/test 
+            -Dsonar.qualitygate.wait=true 
             -Dsonar.host.url=https://sonarcloud.io
 
       - name: SonarQube Quality Gate check
