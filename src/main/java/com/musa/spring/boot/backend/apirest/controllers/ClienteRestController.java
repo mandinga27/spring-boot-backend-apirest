@@ -52,7 +52,12 @@ public class ClienteRestController {
         Cliente clienteActual = this.clienteService.findById(id);
         this.clienteService.delete(clienteActual);
     }
-
+    //@DeleteMapping("/clientes/{id}")
+    //@ResponseStatus(HttpStatus.NO_CONTENT)
+    //public void delete(@PathVariable Long id) {
+    //    Cliente clienteActual = this.clienteService.findById(id);
+    //    this.clienteService.delete(clienteActual);
+    //}
     /*
     @GetMapping("/clientes/{id}") //url de segundo nivel que es para el metodo
     public Cliente show(@PathVariable Long id) {
