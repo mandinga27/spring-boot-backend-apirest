@@ -42,8 +42,8 @@ jobs:
           args: >
             -Dsonar.projectKey=mandinga27_spring-boot-backend-apirest 
             -Dsonar.organization=mandinga27 
-            -Dsonar.java.binaries=/home/runner/work/spring-boot-backend-apirest/spring-boot-backend-apirest/libs/
-            -Dsonar.sources=/home/runner/work/spring-boot-backend-apirest/spring-boot-backend-apirest/src
+            -Dsonar.java.binaries=spring-boot-backend-apirest/build/libs
+            -Dsonar.sources=/spring-boot-backend-apirest/src
             -Dsonar.qualitygate.wait=true 
             -Dsonar.host.url=https://sonarcloud.io
             -Dsonar.gradle.skipCompile=true
