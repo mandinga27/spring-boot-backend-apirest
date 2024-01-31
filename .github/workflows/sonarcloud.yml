@@ -30,11 +30,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: list files
-        run: ls -ls
-      - uses: actions/checkout@v3
-      - run: |
+        run: |
+          ls -ls
           echo ${{ github.workspace }}
           echo $GITHUB_WORKSPACE
+          ls -lR $GITHUB_WORKSPACE
 
       - name: SonarCloud Action Setup
         uses: SonarSource/sonarcloud-github-action@master
