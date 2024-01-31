@@ -20,9 +20,10 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: '17'
-          cache: 'gradle'
+          #cache: 'gradle'
       - run: |
           chmod +x gradlew; ./gradlew clean build -x test
+          pwd
           ls -la
   sonar:
     needs: build
