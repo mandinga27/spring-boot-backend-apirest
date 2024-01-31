@@ -31,6 +31,10 @@ jobs:
     steps:
       - name: list files
         run: ls -ls
+      - uses: actions/checkout@v3
+      - run: |
+          echo ${{ github.workspace }}
+          echo $GITHUB_WORKSPACE
 
       - name: SonarCloud Action Setup
         uses: SonarSource/sonarcloud-github-action@master
