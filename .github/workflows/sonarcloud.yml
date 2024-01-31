@@ -44,6 +44,9 @@ jobs:
             -Dsonar.qualitygate.wait=true 
             -Dsonar.host.url=https://sonarcloud.io
 
+      - name: list files
+        run: ls -la
+
       - name: SonarQube Quality Gate check
         uses: sonarsource/sonarqube-quality-gate-action@master
         env:
