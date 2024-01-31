@@ -53,4 +53,30 @@ public class ClienteRestController {
         this.clienteService.delete(clienteActual);
     }
 
+    /*
+    @GetMapping("/clientes/{id}") //url de segundo nivel que es para el metodo
+    public Cliente show(@PathVariable Long id) {
+        return this.clienteService.findById(id);
+    }
+
+    @PostMapping("/clientes")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Cliente create(@RequestBody Cliente cliente) {
+        cliente.setCreateAt(new Date());
+        this.clienteService.save(cliente);
+        return cliente;
+    }
+
+    @PutMapping("/clientes/{id}")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Cliente update(@RequestBody Cliente cliente, @PathVariable Long id) {
+        Cliente clienteActual = this.clienteService.findById(id);
+        clienteActual.setNombre(cliente.getNombre());
+        clienteActual.setApellido(cliente.getApellido());
+        clienteActual.setEmail(cliente.getEmail());
+        this.clienteService.save(clienteActual);
+        return clienteActual;
+    }
+     */
+
 }
