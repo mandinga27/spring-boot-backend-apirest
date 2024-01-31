@@ -33,7 +33,7 @@ jobs:
         run: |
           ls -la
           echo $GITHUB_WORKSPACE
-          ls -R /${{ github.workspace }}
+          echo ls -R ${{ github.workspace }}/
 
       - name: SonarCloud Action Setup
         uses: SonarSource/sonarcloud-github-action@master
