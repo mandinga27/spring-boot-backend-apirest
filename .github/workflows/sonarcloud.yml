@@ -22,7 +22,7 @@ jobs:
           java-version: '17'
           #cache: 'gradle'
       - run: |
-          chmod +x gradlew
+          chmod +x gradlew; ./gradlew clean build -x test
   sonar:
     needs: build
     runs-on: ubuntu-latest
@@ -34,10 +34,10 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONARCLOUD_TOKEN }}
         #uses: jinguji/sonarcloud-gradle-github-action@v2
         with:
-          projectBaseDir: .
           args: >
             -Dsonar.projectKey=mandinga27_spring-boot-backend-apirest 
             -Dsonar.organization=mandinga27 
+            -Dsonar.java.binaries=
             -Dsonar.sources=.
             -Dsonar.qualitygate.wait=true 
             -Dsonar.host.url=https://sonarcloud.io
