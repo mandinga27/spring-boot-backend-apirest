@@ -31,10 +31,9 @@ jobs:
     steps:
       - name: list files
         run: |
-          ls -ls
-          echo ${{ github.workspace }}
+          ls -la
           echo $GITHUB_WORKSPACE
-          ls /$GITHUB_WORKSPACE
+          ls -R /${{ github.workspace }}
 
       - name: SonarCloud Action Setup
         uses: SonarSource/sonarcloud-github-action@master
