@@ -35,9 +35,9 @@ jobs:
           echo $GITHUB_WORKSPACE
           cd /${{ github.workspace }}/
           ls -R
-          echo  ${{ github.event_name }}
-          echo ${{ github.repository }}
-          echo ${{ github.workspace }}
+          echo evento: ${{ github.event_name }}
+          echo repositorio: ${{ github.repository }}
+          echo workspace: ${{ github.workspace }}
 
       - name: SonarCloud Action Setup
         uses: SonarSource/sonarcloud-github-action@master
