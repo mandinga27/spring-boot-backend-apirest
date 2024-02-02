@@ -62,7 +62,6 @@ jobs:
       #  uses: SonarSource/sonarcloud-github-action@master
       - name: Sonar Scanner
         run: |
-          chmod +x sonar-scanner \
           ./sonar-scanner/bin/sonar-scanner \
           -Dsonar.projectKey=mandinga27_spring-boot-backend-apirest \
           -Dsonar.organization=mandinga27 \
