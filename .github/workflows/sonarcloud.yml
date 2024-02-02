@@ -41,16 +41,18 @@ jobs:
 
       - name: Download and extract SonarScanner
         run: |
+          mkdir sonar-scanner
+          cd sonar-scanner
           curl -LJO https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-5.0.1.3006-linux.zip
-          unzip sonar-scanner-cli-5.0.1.3006-linux.zip 
+          unzip sonar-scanner.zip 
           echo ls 
-          chmod 777 sonar-scanner-5.0.1.3006-linux/bin/sonar-scanner
+          chmod 777 sonar-scanner/bin/sonar-scanner
 
       - name: Upload SonarScanner as artifact
         uses: actions/upload-artifact@v2
         with:
           name: sonar-scanner
-          path: sonar-scanner-5.0.1.3006-linux
+          path: sonar-scanner
 
       - name: Download SonarScanner artifact
         uses: actions/download-artifact@v2
