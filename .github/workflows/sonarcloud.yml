@@ -43,7 +43,7 @@ jobs:
         run: |
           curl -LJO https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-5.0.1.3006-linux.zip
           unzip sonar-scanner-cli-5.0.1.3006-linux.zip
-
+          chmod +x sonar-scanner-5.0.1.3006-linux/bin/sonar-scanner
       - name: Upload SonarScanner as artifact
         uses: actions/upload-artifact@v2
         with:
