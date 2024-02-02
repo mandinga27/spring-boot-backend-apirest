@@ -60,8 +60,8 @@ jobs:
       #  uses: SonarSource/sonarcloud-github-action@master
       - name: Sonar Scanner
         run: |
-          echo ${{ github.workspace }}/ 
-          ./sonar-scanner/bin/sonar-scanner/sonar-scanner \
+          echo ${{ github.workspace }}/  ; echo ${{ github.workspace }}/sonar-scanner
+          cd ./sonar-scanner/bin/sonar-scanner/sonar-scanner \
           -Dsonar.projectKey=mandinga27_spring-boot-backend-apirest \
           -Dsonar.organization=mandinga27 \
           -Dsonar.java.binaries=${{ github.workspace }}/build/libs \
