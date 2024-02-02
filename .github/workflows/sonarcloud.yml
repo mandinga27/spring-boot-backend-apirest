@@ -61,7 +61,7 @@ jobs:
       - name: Sonar Scanner
         run: |
           cd ${{ github.workspace }}/sonar-scanner/bin/ 
-          ./sonar-scanner \
+          ./sonar-scanner.sh \
           -Dsonar.projectKey=mandinga27_spring-boot-backend-apirest \
           -Dsonar.organization=mandinga27 \
           -Dsonar.java.binaries=${{ github.workspace }}/build/libs \
