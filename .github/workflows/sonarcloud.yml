@@ -38,27 +38,40 @@ jobs:
           echo evento: ${{ github.event_name }}
           echo repositorio: ${{ github.repository }}
           echo workspace: ${{ github.workspace }}
-      - name: Download and Extract SonarScanner
+
+      - name: Download and extract SonarScanner
         run: |
-          mkdir sonar-scanner
-          cd sonar-scanner
-          wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-5.0.1.3006-linux.zip
+          curl -LJO https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-5.0.1.3006-linux.zip
           unzip sonar-scanner-cli-5.0.1.3006-linux.zip
-          cd ..
-      - name: SonarCloud Action Setup
-        uses: SonarSource/sonarcloud-github-action@master
+
+      - name: Upload SonarScanner as artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: sonar-scanner
+          path: sonar-scanner-5.0.1.3006-linux
+
+      - name: Download SonarScanner artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: sonar-scanner
+          path: sonar-scanner
+
+      #- name: SonarCloud Action Setup
+      #  uses: SonarSource/sonarcloud-github-action@master
+      - name: Sonar Scanner
+        run: |
+          ./sonar-scanner/bin/sonar-scanner \
+          -Dsonar.projectKey=mandinga27_spring-boot-backend-apirest \
+          -Dsonar.organization=mandinga27 \
+          -Dsonar.java.binaries=${{ github.workspace }}/build/libs \
+          -Dsonar.sources=${{ github.workspace }}/src \
+          -Dsonar.qualitygate.wait=true \
+          -Dsonar.gradle.skipCompile=true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONARCLOUD_TOKEN }}
         #uses: jinguji/sonarcloud-gradle-github-action@v2
-        with:
-          args: >
-            -Dsonar.projectKey=mandinga27_spring-boot-backend-apirest 
-            -Dsonar.organization=mandinga27 
-            -Dsonar.java.binaries=${{ github.workspace }}/build/libs
-            -Dsonar.sources=${{ github.workspace }}/src
-            -Dsonar.qualitygate.wait=true 
-            -Dsonar.gradle.skipCompile=true
+
 
       - name: SonarQube Quality Gate check
         id: sonarqube-quality-gate-check
