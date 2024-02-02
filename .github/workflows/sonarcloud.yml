@@ -41,17 +41,17 @@ jobs:
 
       - name: Download and extract SonarScanner
         run: |
-          curl -LJO https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-5.0.1.3006-linux.zip
+          curl -LJO https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.8.1.3023-linux.zip?_gl=1*1xqd85y*_gcl_aw*R0NMLjE3MDMyMDQzMzYuQ2owS0NRaUE0WS1zQmhDNkFSSXNBR1hGMWc1eGdUMEJGeUdwN0NHdnlTYURLc3NHbHpaT3l3T1MzRVpwZGN2VjdLVC13NlFkWmxWdG1pUWFBbWhMRUFMd193Y0I.*_gcl_au*NTgzNjI2MDE5LjE3MDIxNzgwOTY.*_ga*MjA5NDM2NTA4Mi4xNzAyMTc4MDk2*_ga_9JZ0GZ5TC6*MTcwNjgzMTgwMS4xMC4xLjE3MDY4MzcxMzYuNjAuMC4w
           echo ls -la
-          unzip sonar-scanner-cli-5.0.1.3006-linux.zip 
+          unzip sonar-scanner-cli-4.8.1.3023-linux.zip 
           echo ls 
-          chmod 777 sonar-scanner-5.0.1.3006-linux/bin/sonar-scanner
+          chmod 777 sonar-scanner-cli-4.8.1.3023-linux/bin/sonar-scanner
 
       - name: Upload SonarScanner as artifact
         uses: actions/upload-artifact@v2
         with:
           name: sonar-scanner
-          path: sonar-scanner-5.0.1.3006-linux
+          path: sonar-scanner-4.8.1.3023-linux
 
       - name: Download SonarScanner artifact
         uses: actions/download-artifact@v2
