@@ -42,7 +42,8 @@ jobs:
       - name: Download and extract SonarScanner
         run: |
           curl -LJO https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-5.0.1.3006-linux.zip
-          unzip sonar-scanner-cli-5.0.1.3006-linux.zip /dev/null.
+          unzip sonar-scanner-cli-5.0.1.3006-linux.zip 
+          /dev/null.
           echo ls 
           chmod 777 sonar-scanner-5.0.1.3006-linux/bin/sonar-scanner
 
