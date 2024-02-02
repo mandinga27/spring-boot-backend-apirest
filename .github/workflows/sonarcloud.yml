@@ -68,7 +68,7 @@ jobs:
           -Dsonar.sources=${{ github.workspace }}/src \
           -Dsonar.qualitygate.wait=true \
           -Dsonar.gradle.skipCompile=true \
-          -Dsonar.host.url= ${{ secrets.SONAR_HOST_URL }}
+          -Dsonar.host.url=https://sonarcloud.io/
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONARCLOUD_TOKEN }}
