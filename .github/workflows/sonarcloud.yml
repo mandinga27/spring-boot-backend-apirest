@@ -64,7 +64,7 @@ jobs:
 
         with:
           args: >
-            ./gradlew sonar
+            ./gradlew clean build -x test sonar
             -Dsonar.projectKey=mandinga27_spring-boot-backend-apirest \
             -Dsonar.organization=mandinga27 \
             -Dsonar.java.binaries=${{ github.workspace }}/build/libs \
