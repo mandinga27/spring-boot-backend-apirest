@@ -39,22 +39,16 @@ jobs:
           echo repositorio: ${{ github.repository }}
           echo workspace: ${{ github.workspace }}
 
-      - name: Download and extract SonarScanner
+      - name: Download and Extract Sonar Scanner
         run: |
-          curl -LJO https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.8.1.3023-linux.zip
-          unzip sonar-scanner-cli-4.8.1.3023-linux.zip 
+          mkdir sonar-scanner
+          curl -L -o sonar-scanner.zip https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-5.0.1.3006-linux.zip
+          unzip sonar-scanner.zip -d sonar-scanner
 
-      - name: Upload SonarScanner as artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: sonar-scanner
-          path: sonar-scanner-4.8.1.3023-linux
-
-      - name: Download SonarScanner artifact
-        uses: actions/download-artifact@v2
-        with:
-          name: sonar-scanner
-          path: sonar-scanner
+      - name: Set Permissions for Sonar Scanner
+        run: |
+          chmod +x sonar-scanner/sonar-scanner-5.0.1.3006-linux/bin/sonar-scanner
+          
 
       - name: SonarCloud Action Setup
         uses: SonarSource/sonarcloud-github-action@master
@@ -62,9 +56,9 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONARCLOUD_TOKEN }}
 
-        with:
-          args: >
-            ./gradlew clean build -x test sonar
+      - name: Run SonarCloud Analysis
+        run: |
+            ./sonar-scanner/sonar-scanner-5.0.1.3006-linux/bin/sonar-scanner
             -Dsonar.projectKey=mandinga27_spring-boot-backend-apirest \
             -Dsonar.organization=mandinga27 \
             -Dsonar.java.binaries=${{ github.workspace }}/build/libs \
