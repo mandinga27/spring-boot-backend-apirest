@@ -58,20 +58,20 @@ jobs:
 
       - name: SonarCloud Action Setup
         uses: SonarSource/sonarcloud-github-action@master
-      - name: Sonar Scanner
-        run: |
-          
-          ./gradlew sonar
-          -Dsonar.projectKey=mandinga27_spring-boot-backend-apirest \
-          -Dsonar.organization=mandinga27 \
-          -Dsonar.java.binaries=${{ github.workspace }}/build/libs \
-          -Dsonar.sources=${{ github.workspace }}/src \
-          -Dsonar.qualitygate.wait=true \
-          -Dsonar.gradle.skipCompile=true \
-          -Dsonar.host.url=${{ secrets.SONAR_HOST_URL }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONARCLOUD_TOKEN }}
+
+        with:
+          args: >
+            ./gradlew sonar
+            -Dsonar.projectKey=mandinga27_spring-boot-backend-apirest \
+            -Dsonar.organization=mandinga27 \
+            -Dsonar.java.binaries=${{ github.workspace }}/build/libs \
+            -Dsonar.sources=${{ github.workspace }}/src \
+            -Dsonar.qualitygate.wait=true \
+            -Dsonar.gradle.skipCompile=true \
+
         #uses: jinguji/sonarcloud-gradle-github-action@v2
 
 
