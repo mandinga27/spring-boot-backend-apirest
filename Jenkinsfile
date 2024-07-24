@@ -7,7 +7,7 @@ pipeline {
     stage('Gradle Build') {
       steps {
         bat 'gradle --version'
-        bat 'gradle clean build'
+        bat 'gradle clean build'   
         bat "echo %WORKSPACE%"
         //bat 'java --version'
       }
