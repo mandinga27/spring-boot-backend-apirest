@@ -61,9 +61,8 @@ jobs:
           -Donar.exclusions=**/sonar-scanner/** \
           -Dsonar.projectKey=mandinga27_spring-boot-backend-apirest \
           -Dsonar.organization=mandinga27 \
-          -Dsonar.java.binaries=${{ github.workspace }}/build/libs \
+          -Dsonar.java.binaries=. \
           -Dsonar.sources=. \
-          -Dsonar.projectBaseDir=. \
           -Dsonar.qualitygate.wait=true \
           -Dsonar.gradle.skipCompile=true \
           -Dsonar.host.url=https://sonarcloud.io
