@@ -28,8 +28,9 @@ jobs:
 
       - name: jacoco
         run: |
-          ./gradlew test jacocoTestReport --stacktrace --debug
           ls -R
+          ./gradlew test jacocoTestReport --stacktrace --debug
+          
       
   sonar:
     needs: build
