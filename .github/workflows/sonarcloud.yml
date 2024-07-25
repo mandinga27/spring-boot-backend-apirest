@@ -62,6 +62,8 @@ jobs:
           -Dsonar.projectKey=mandinga27_spring-boot-backend-apirest \
           -Dsonar.organization=mandinga27 \
           -Dsonar.java.binaries=. \
+          -Dsonar.projectBaseDir=src/main/java \
+          -Dsonar.sourceEncoding=UTF-8 \
           -Dsonar.sources=. \
           -Dsonar.qualitygate.wait=true \
           -Dsonar.gradle.skipCompile=true \
