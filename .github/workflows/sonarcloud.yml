@@ -23,9 +23,13 @@ jobs:
           #cache: 'gradle'
       - run: |
           chmod +x gradlew; ./gradlew clean build -x test
-          ./gradlew clean build jacocoTestReport
           pwd
           ls -la
+
+      - name: jacoco
+        run: |
+          ./gradlew test jacocoTestReport
+          ls -R
       
   sonar:
     needs: build
