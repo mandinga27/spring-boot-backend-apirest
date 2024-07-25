@@ -28,7 +28,7 @@ jobs:
 
       - name: jacoco
         run: |
-          ./gradlew test jacocoTestReport
+          ./gradlew test jacocoTestReport --stacktrace --debug
           ls -R
       
   sonar:
