@@ -52,21 +52,19 @@ jobs:
       #- name: SonarCloud Action Setup
       #  uses: SonarSource/sonarcloud-github-action@master
 
-
       - name: Run SonarCloud Analysis
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONARCLOUD_TOKEN }}
         run: |
-            ./sonar-scanner/sonar-scanner-5.0.1.3006-linux/bin/sonar-scanner \
-            -Dsonar.projectKey:mandinga27_spring-boot-backend-apirest \
-            -Dsonar.organization:mandinga27 \
-            -Dsonar.java.binaries:${{ github.workspace }}/build/libs \
-            -Dsonar.sources:${{ github.workspace }}/src \
-            -Dsonar.qualitygate.wait=true \
-            -Dsonar.gradle.skipCompile=true \
-
-        #uses: jinguji/sonarcloud-gradle-github-action@v2
+          ./sonar-scanner/sonar-scanner-5.0.1.3006-linux/bin/sonar-scanner \
+          -Dsonar.projectKey:mandinga27_spring-boot-backend-apirest \
+          -Dsonar.organization:mandinga27 \
+          -Dsonar.java.binaries:${{ github.workspace }}/build/libs \
+          -Dsonar.sources:${{ github.workspace }}/src \
+          -Dsonar.qualitygate.wait=true \
+          -Dsonar.gradle.skipCompile=true \
+          -Dsonar.host.url=https://sonarcloud.io
 
 
       - name: SonarQube Quality Gate check
