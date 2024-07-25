@@ -23,8 +23,10 @@ jobs:
           #cache: 'gradle'
       - run: |
           chmod +x gradlew; ./gradlew clean build -x test
+          ./gradlew clean build jacocoTestReport
           pwd
           ls -la
+      
   sonar:
     needs: build
     runs-on: ubuntu-latest
