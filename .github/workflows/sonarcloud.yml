@@ -58,6 +58,7 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONARCLOUD_TOKEN }}
         run: |
           ./sonar-scanner/sonar-scanner-5.0.1.3006-linux/bin/sonar-scanner \
+          -Donar.exclusions=**/sonar-scanner/** \
           -Dsonar.projectKey=mandinga27_spring-boot-backend-apirest \
           -Dsonar.organization=mandinga27 \
           -Dsonar.java.binaries=${{ github.workspace }}/build/libs \
