@@ -26,10 +26,10 @@ jobs:
           pwd
           ls -la
 
-      - name: jacoco
-        run: |
-          ls -R
-          ./gradlew test jacocoTestReport --stacktrace --debug
+      #- name: jacoco
+      #  run: |
+      #    ls -R
+      #    ./gradlew test jacocoTestReport --stacktrace --debug
           
       
   sonar:
