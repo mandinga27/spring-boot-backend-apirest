@@ -1,5 +1,5 @@
 # Compiled class file
-*.class
+*.class/
 
 # Log file
 *.log
@@ -23,10 +23,13 @@
 hs_err_pid*
 
 # intellij ide Files #
-.idea
+.idea/
+
+.vscode/
 
 # gradle files
-.gradle/
+.gradle/**
+
 
 # settings file
 .settings/
