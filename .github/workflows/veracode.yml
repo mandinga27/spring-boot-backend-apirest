@@ -5,7 +5,7 @@ name: CI
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the master branch
 on:
-  workflow_dispatch:
+  workflow_call:
   push:
     branches: [ develop2 ]
   pull_request:
@@ -62,5 +62,5 @@ jobs:
         #  vkey: ${{ secrets.VERACODE_API_KEY }}
         #  file: ${{ github.repository }}.jar
         #  token: ${{  secrets.GH_PAT }}
-        #env:
-        #  GH_TOKEN: ${{ secrets.GH_PAT }}
+        env:
+          GH_TOKEN: ${{ secrets.GH_PAT }}
