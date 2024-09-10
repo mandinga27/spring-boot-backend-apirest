@@ -39,6 +39,9 @@ jobs:
           ##ref: v1.0
           token: ${{ secrets.GH_PAT }}
           path: .github/actions/veracode-scan
+
+      - name: list files
+        run: ls -R
       #- name: Veracode Upload and Scan Action Step
       #  uses: ./ # Uses an action in the root directory
       #  id: upload_and_scan
