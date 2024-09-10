@@ -57,10 +57,10 @@ jobs:
 
       - name: Run Veracode Pipeline Scan
         uses: mandinga27/actions/veracode-scan@feat-templates  # Invoca la acción desde la rama 'feat-templates'
-        with:
-          vid: ${{ secrets.VERACODE_API_ID }}
-          vkey: ${{ secrets.VERACODE_API_KEY }}
-          file: ${{ github.repository }}.jar
-          token: ${{  secrets.GH_PAT }}
+        #with:
+        #  vid: ${{ secrets.VERACODE_API_ID }}
+        #  vkey: ${{ secrets.VERACODE_API_KEY }}
+        #  file: ${{ github.repository }}.jar
+        #  token: ${{  secrets.GH_PAT }}
         #env:
         #  GH_TOKEN: ${{ secrets.GH_PAT }}
