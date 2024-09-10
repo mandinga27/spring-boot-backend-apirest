@@ -62,3 +62,5 @@ jobs:
           vkey: ${{ secrets.VERACODE_API_KEY }}
           file: ${{ github.repository }}.jar
           token: ${{ secrets.GITHUB_TOKEN }}
+        env:
+          GH_TOKEN: ${{ secrets.GH_PAT }}
