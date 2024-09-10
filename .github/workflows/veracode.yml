@@ -32,7 +32,13 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           path: build/libs/*.jar
-
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          repository: mandinga27/actions
+          ##ref: v1.0
+          token: ${{ secrets.GH_PAT }}
+          path: .github/actions/veracode-scan
       #- name: Veracode Upload and Scan Action Step
       #  uses: ./ # Uses an action in the root directory
       #  id: upload_and_scan
@@ -56,7 +62,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Run Veracode Pipeline Scan
-        uses: mandinga27/actions/veracode-scan@feat-templates  # Invoca la acción desde la rama 'feat-templates'
+        uses: ./.github/actions/veracode-scan@feat-templates  # Invoca la acción desde la rama 'feat-templates'
         with:
           vid: ${{ secrets.VERACODE_API_ID }}
           vkey: ${{ secrets.VERACODE_API_KEY }}
