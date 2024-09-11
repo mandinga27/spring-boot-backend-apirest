@@ -1,15 +1,53 @@
-# This is a basic workflow to help you get started with Actions
+name: Veracode Static Pipeline Scanner
 
-name: CI
-
-# Controls when the action will run. Triggers the workflow on push or pull request
-# events but only for the master branch
 on:
   workflow_call:
-  push:
-    branches: [ develop2 ]
-  pull_request:
-    branches: [ master ]
+    inputs:
+      policy_name:
+        required: true
+        type: string
+      owner:
+        required: true
+        type: string
+      repo:
+        required: true
+        type: string
+      sha:
+        required: true
+        type: string
+      token:
+        required: true
+        type: string
+      ref:
+        required: true
+        type: string
+      create_code_scanning_alert:
+        required: true
+        type: boolean
+      create_issue:
+        required: true
+        type: boolean
+      check_run_id:
+        required: true
+        type: string
+      source_repository:
+        required: true
+        type: string
+      profile_name:
+        required: true
+        type: string
+      break_build_policy_findings:
+        required: true
+        type: string
+      break_build_on_error:
+        required: true
+        type: string
+      filter_mitigated_flaws:
+        required: true
+        type: string
+      language:
+        required: true
+        type: string
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -76,7 +114,21 @@ jobs:
           GH_TOKEN: ${{ secrets.GH_PAT }}
 
 
-
+      - name: Veracode Pipeline Results
+        if: always()
+        id: prepare-results
+        uses: Veracode/github-actions-integration-helper@v0.1.4
+        with:
+          action: 'preparePipelineResults'
+          token: ${{ inputs.token }}
+          check_run_id: ${{ inputs.check_run_id }}
+          vid: ${{ secrets.VERACODE_API_ID }}
+          vkey: ${{ secrets.VERACODE_API_KEY }}
+          appname: ${{ inputs.profile_name }}
+          source_repository: ${{ inputs.source_repository }}
+          fail_checks_on_policy: ${{ inputs.break_build_policy_findings }}
+          fail_checks_on_error: ${{ inputs.break_build_on_error }}
+          filter_mitigated_flaws: ${{ inputs.filter_mitigated_flaws }}
 
 
 
