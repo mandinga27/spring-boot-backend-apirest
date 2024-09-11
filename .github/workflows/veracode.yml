@@ -8,37 +8,37 @@ on:
   workflow_call:
     inputs:
       policy_name:
-        required: true
+        required: false
         type: string
       owner:
-        required: true
+        required: false
         type: string
       repo:
-        required: true
+        required: false
         type: string
       sha:
-        required: true
+        required: false
         type: string
       token:
-        required: true
+        required: false
         type: string
       ref:
-        required: true
+        required: false
         type: string
       create_code_scanning_alert:
-        required: true
+        required: false
         type: boolean
       create_issue:
         required: true
         type: boolean
       check_run_id:
-        required: true
+        required: false
         type: string
       source_repository:
-        required: true
+        required: false
         type: string
       profile_name:
-        required: true
+        required: false
         type: string
       break_build_policy_findings:
         required: true
@@ -50,7 +50,7 @@ on:
         required: true
         type: string
       language:
-        required: true
+        required: false
         type: string
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
