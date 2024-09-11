@@ -128,7 +128,7 @@ jobs:
           check_run_id: ${{ inputs.check_run_id }}
           vid: ${{ secrets.VERACODE_API_ID }}
           vkey: ${{ secrets.VERACODE_API_KEY }}
-          appname: ${{ inputs.profile_name }}
+          appname: spring-boot-backend-apirest
           source_repository: ${{ inputs.source_repository }}
           fail_checks_on_policy: ${{ inputs.break_build_policy_findings }}
           fail_checks_on_error: ${{ inputs.break_build_on_error }}
