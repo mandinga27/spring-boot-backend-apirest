@@ -76,22 +76,26 @@ jobs:
           name: my-artifact
           path: build/libs/*.jar
 
-      - name: list files
-        run: ls -R
-      #- name: Veracode Upload and Scan Action Step
-      #  uses: ./ # Uses an action in the root directory
-      #  id: upload_and_scan
-      #  with:
-      #    appname: '${{ github.repository }}'
-      #    version: '${{ github.run_id }}'
-      #    filepath: 'binaries_to_upload/*.jar'
-      #    vid: '${{ secrets.VERACODE_API_ID }}'
-      #    vkey: '${{ secrets.VERACODE_API_KEY }}'
-      #    createsandbox: true
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: my-artifact
+          path: build/libs/
+
+      - name: Veracode Upload and Scan Action Step
+        uses: ./ # Uses an action in the root directory
+        id: upload_and_scan
+        with:
+          appname: '${{ github.repository }}'
+          version: '${{ github.run_id }}'
+          filepath: 'build/libs/spring-boot-backend-apirest-0.0.1-SNAPSHOT.jar'
+          vid: '${{ secrets.VERACODE_API_ID }}'
+          vkey: '${{ secrets.VERACODE_API_KEY }}'
+          createsandbox: true
           #sandboxname: 'Github - ${{ github.ref }}'
-      #    scantimeout: 15
-      #    criticality: 'VeryHigh'
-      #    createprofile: false
+          scantimeout: 15
+          criticality: 'VeryHigh'
+          createprofile: false
 
 
   veracode-pipeline-scan:
