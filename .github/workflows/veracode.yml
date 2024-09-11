@@ -31,14 +31,8 @@ jobs:
 
       - uses: actions/upload-artifact@v4
         with:
+          name: my-artifact
           path: build/libs/*.jar
-      - name: Check out repository
-        uses: actions/checkout@v4
-        with:
-          repository: mandinga27/actions
-          ##ref: v1.0
-          token: ${{ secrets.GH_PAT }}
-          path: .github/actions/veracode-scan
 
       - name: list files
         run: ls -R
@@ -64,6 +58,12 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: my-artifact
+          path: build/libs/ # Ruta donde quieres descargar el artefacto
 
       - name: Run Veracode Pipeline Scan
         uses: ./
