@@ -70,7 +70,7 @@ jobs:
         with:
           vid: ${{ secrets.VERACODE_API_ID }}
           vkey: ${{ secrets.VERACODE_API_KEY }}
-          file: ${{ github.repository }}.jar
+          file: build/libs/*.jar
           token: ${{  secrets.GH_PAT }}
         env:
           GH_TOKEN: ${{ secrets.GH_PAT }}
