@@ -70,7 +70,7 @@ jobs:
         with:
           vid: ${{ secrets.VERACODE_API_ID }}
           vkey: ${{ secrets.VERACODE_API_KEY }}
-          file: build/libs/*.jar
+          file: build/libs/spring-boot-backend-apirest-0.0.1-SNAPSHOT.jar
           token: ${{  secrets.GH_PAT }}
         env:
           GH_TOKEN: ${{ secrets.GH_PAT }}
