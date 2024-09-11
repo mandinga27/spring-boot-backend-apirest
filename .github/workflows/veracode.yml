@@ -133,6 +133,8 @@ jobs:
           fail_checks_on_policy: ${{ inputs.break_build_policy_findings }}
           fail_checks_on_error: ${{ inputs.break_build_on_error }}
           filter_mitigated_flaws: ${{ inputs.filter_mitigated_flaws }}
+        env:
+          GH_TOKEN: ${{ secrets.GH_PAT }}
 
 
 
