@@ -1,6 +1,10 @@
 name: Veracode Static Pipeline Scanner
 
 on:
+  push:
+    branches:
+      - develop2
+
   workflow_call:
     inputs:
       policy_name:
