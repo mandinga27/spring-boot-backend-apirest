@@ -95,7 +95,7 @@ jobs:
           #sandboxname: 'Github - ${{ github.ref }}'
           scantimeout: 15
           criticality: 'VeryHigh'
-          createprofile: false
+          createprofile: true
 
 
   veracode-pipeline-scan:
