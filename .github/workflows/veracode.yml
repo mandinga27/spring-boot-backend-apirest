@@ -20,7 +20,7 @@ on:
         required: false
         type: string
       token:
-        required: false
+        required: true
         type: string
       ref:
         required: false
@@ -32,10 +32,10 @@ on:
         required: true
         type: boolean
       check_run_id:
-        required: false
+        required: true
         type: string
       source_repository:
-        required: false
+        required: true
         type: string
       profile_name:
         required: false
@@ -124,12 +124,12 @@ jobs:
         uses: Veracode/github-actions-integration-helper@v0.1.4
         with:
           action: 'preparePipelineResults'
-          token: ${{ inputs.token }}
-          check_run_id: ${{ inputs.check_run_id }}
+          token: ${{ secrets.GH_PAT }}
+          check_run_id: ${{ github.run_id }}
           vid: ${{ secrets.VERACODE_API_ID }}
           vkey: ${{ secrets.VERACODE_API_KEY }}
           appname: spring-boot-backend-apirest
-          source_repository: ${{ inputs.source_repository }}
+          source_repository: ${{ github.repository }}
           fail_checks_on_policy: ${{ inputs.break_build_policy_findings }}
           fail_checks_on_error: ${{ inputs.break_build_on_error }}
           filter_mitigated_flaws: ${{ inputs.filter_mitigated_flaws }}
