@@ -99,7 +99,7 @@ jobs:
 
   invoke-reusable:
     needs: build
-    uses: mandinga27/spring-boot-backend-apirest/.github/workflows/sonarcloud.yml@feat-develop2  # Apunta al workflow reutilizable
+    uses: mandinga27/spring-boot-backend-apirest/.github/workflows/sonarcloud.yml@develop2
 
   veracode-pipeline-scan:
     needs: build
