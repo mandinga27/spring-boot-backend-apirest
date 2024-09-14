@@ -86,7 +86,7 @@ jobs:
         uses: veracode/veracode-uploadandscan-action@0.2.6
         id: upload_and_scan
         with:
-          appname: ${{ github.repository.name }}
+          appname: 'spring-boot-backend-apirest'
           version: ${{ github.run_id }}
           filepath: 'build/libs/spring-boot-backend-apirest-0.0.1-SNAPSHOT.jar'
           vid: ${{ secrets.VERACODE_API_ID }}
