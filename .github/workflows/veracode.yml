@@ -86,7 +86,7 @@ jobs:
         uses: veracode/veracode-uploadandscan-action@0.2.6
         id: upload_and_scan
         with:
-          appname: '${{ github.repository }}'
+          appname: '${{ github.repository.name }}'
           version: '${{ github.run_id }}'
           filepath: 'build/libs/spring-boot-backend-apirest-0.0.1-SNAPSHOT.jar'
           vid: '${{ secrets.VERACODE_API_ID }}'
@@ -97,6 +97,9 @@ jobs:
           criticality: 'VeryHigh'
           createprofile: true
 
+  invoke-reusable:
+    needs: build
+    uses: .github/workflows/sonarcloud.yml@feat-develop2  # Apunta al workflow reutilizable
 
   veracode-pipeline-scan:
     needs: build
@@ -122,23 +125,23 @@ jobs:
           GH_TOKEN: ${{ secrets.GH_PAT }}
 
 
-      - name: Veracode Pipeline Results
-        if: always()
-        id: prepare-results
-        uses: Veracode/github-actions-integration-helper@v0.1.4
-        with:
-          action: 'preparePipelineResults'
-          token: ${{ secrets.GH_PAT }}
-          check_run_id: ${{ github.run_id }}
-          vid: ${{ secrets.VERACODE_API_ID }}
-          vkey: ${{ secrets.VERACODE_API_KEY }}
-          appname: spring-boot-backend-apirest
-          source_repository: ${{ github.repository }}
-          fail_checks_on_policy: ${{ inputs.break_build_policy_findings }}
-          fail_checks_on_error: ${{ inputs.break_build_on_error }}
-          filter_mitigated_flaws: ${{ inputs.filter_mitigated_flaws }}
-        env:
-          GH_TOKEN: ${{ secrets.GH_PAT }}
+      #- name: Veracode Pipeline Results
+      #  if: always()
+      #  id: prepare-results
+      #  uses: Veracode/github-actions-integration-helper@v0.1.4
+      #  with:
+      #    action: 'preparePipelineResults'
+      #    token: ${{ secrets.GH_PAT }}
+      #    check_run_id: ${{ github.run_id }}
+      #    vid: ${{ secrets.VERACODE_API_ID }}
+      #    vkey: ${{ secrets.VERACODE_API_KEY }}
+      #    appname: spring-boot-backend-apirest
+      #    source_repository: ${{ github.repository }}
+      #    fail_checks_on_policy: ${{ inputs.break_build_policy_findings }}
+      #    fail_checks_on_error: ${{ inputs.break_build_on_error }}
+      #    filter_mitigated_flaws: ${{ inputs.filter_mitigated_flaws }}
+      #  env:
+      #    GH_TOKEN: ${{ secrets.GH_PAT }}
 
 
 
