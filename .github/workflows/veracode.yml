@@ -86,16 +86,16 @@ jobs:
         uses: veracode/veracode-uploadandscan-action@0.2.6
         id: upload_and_scan
         with:
-          appname: '${{ github.repository.name }}'
-          version: '${{ github.run_id }}'
+          appname: ${{ github.repository.name }}
+          version: ${{ github.run_id }}
           filepath: 'build/libs/spring-boot-backend-apirest-0.0.1-SNAPSHOT.jar'
-          vid: '${{ secrets.VERACODE_API_ID }}'
-          vkey: '${{ secrets.VERACODE_API_KEY }}'
-          createsandbox: true
+          vid: ${{ secrets.VERACODE_API_ID }}
+          vkey: ${{ secrets.VERACODE_API_KEY }}
+          createsandbox: false
           #sandboxname: 'Github - ${{ github.ref }}'
           scantimeout: 15
           criticality: 'VeryHigh'
-          createprofile: true
+          createprofile: false
 
   invoke-reusable:
     needs: build
@@ -114,15 +114,15 @@ jobs:
           name: my-artifact
           path: build/libs/ # Ruta donde quieres descargar el artefacto
 
-      - name: Run Veracode Pipeline Scan
-        uses: ./
-        with:
-          vid: ${{ secrets.VERACODE_API_ID }}
-          vkey: ${{ secrets.VERACODE_API_KEY }}
-          file: build/libs/spring-boot-backend-apirest-0.0.1-SNAPSHOT.jar
-          token: ${{  secrets.GH_PAT }}
-        env:
-          GH_TOKEN: ${{ secrets.GH_PAT }}
+      #- name: Run Veracode Pipeline Scan
+      #  uses: ./
+      #  with:
+      #    vid: ${{ secrets.VERACODE_API_ID }}
+      #    vkey: ${{ secrets.VERACODE_API_KEY }}
+      #    file: build/libs/spring-boot-backend-apirest-0.0.1-SNAPSHOT.jar
+      #    token: ${{  secrets.GH_PAT }}
+      #  env:
+      #    GH_TOKEN: ${{ secrets.GH_PAT }}
 
 
       #- name: Veracode Pipeline Results
