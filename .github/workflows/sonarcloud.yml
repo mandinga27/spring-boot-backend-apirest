@@ -1,6 +1,7 @@
 name: SonarCloud analysis
 
 on:
+  workflow_call:
   push:
     branches: [ "main", "develop2", "develop" ]
   pull_request:
@@ -81,7 +82,7 @@ jobs:
           -Dsonar.host.url=https://sonarcloud.io
 
 
-      - name: SonarQube Quality Gate check
+      - name: SonarQube Evaluando Resultados...
         id: sonarqube-quality-gate-check
         uses: sonarsource/sonarqube-quality-gate-action@master
         # Force to fail step after specific time.
