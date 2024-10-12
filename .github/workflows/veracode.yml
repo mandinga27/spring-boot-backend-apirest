@@ -70,7 +70,6 @@ jobs:
           chmod +x gradlew; ./gradlew clean build -x test
           pwd
           ls -la
-
       - uses: actions/upload-artifact@v4
         with:
           name: my-artifact
@@ -82,6 +81,16 @@ jobs:
           name: my-artifact
           path: build/libs/
 
+  invoke-reusable:
+    needs: build
+    uses: mandinga27/spring-boot-backend-apirest/.github/workflows/sonarcloud.yml@develop2
+
+  veracode-policie-scan:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
       - name: Veracode Upload and Scan Action Step
         uses: veracode/veracode-uploadandscan-action@0.2.6
         id: upload_and_scan
@@ -98,51 +107,59 @@ jobs:
           createprofile: false
         continue-on-error: true
 
-  invoke-reusable:
-    needs: build
-    uses: mandinga27/spring-boot-backend-apirest/.github/workflows/sonarcloud.yml@develop2
-
-  veracode-pipeline-scan:
+  pipeline_scan:
     needs: build
     runs-on: ubuntu-latest
+    name: Veracode Pipeline Scan
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Download artifact
+      - name: get archive
         uses: actions/download-artifact@v4
         with:
           name: my-artifact
           path: build/libs/ # Ruta donde quieres descargar el artefacto
 
-      #- name: Run Veracode Pipeline Scan
-      #  uses: ./
-      #  with:
-      #    vid: ${{ secrets.VERACODE_API_ID }}
-      #    vkey: ${{ secrets.VERACODE_API_KEY }}
-      #    file: build/libs/spring-boot-backend-apirest-0.0.1-SNAPSHOT.jar
-      #    token: ${{  secrets.GH_PAT }}
-      #  env:
-      #    GH_TOKEN: ${{ secrets.GH_PAT }}
+      - name: pipeline-scan action step
+        id: pipelien-scan
+        uses: veracode/Veracode-pipeline-scan-action@esd-true
+        with:
+          vid: ${{ secrets.VERACODE_API_ID }}
+          vkey: ${{ secrets.VERACODE_API_KEY }}
+          file: "build/libs/"
+          #request_policy: "VeraDemo Policy"
+          debug: 1
+          fail_build: false
 
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Veracode Pipeline-Scan Results
+          path: results.json
 
-      #- name: Veracode Pipeline Results
-      #  if: always()
-      #  id: prepare-results
-      #  uses: Veracode/github-actions-integration-helper@v0.1.4
-      #  with:
-      #    action: 'preparePipelineResults'
-      #    token: ${{ secrets.GH_PAT }}
-      #    check_run_id: ${{ github.run_id }}
-      #    vid: ${{ secrets.VERACODE_API_ID }}
-      #    vkey: ${{ secrets.VERACODE_API_KEY }}
-      #    appname: spring-boot-backend-apirest
-      #    source_repository: ${{ github.repository }}
-      #    fail_checks_on_policy: ${{ inputs.break_build_policy_findings }}
-      #    fail_checks_on_error: ${{ inputs.break_build_on_error }}
-      #    filter_mitigated_flaws: ${{ inputs.filter_mitigated_flaws }}
-      #  env:
-      #    GH_TOKEN: ${{ secrets.GH_PAT }}
+  veracode_fix:
+     needs: pipeline_scan
+     runs-on: ubuntu-latest
+     name: Veracode Fix
+     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
+      - name: get flaw file
+        uses: actions/download-artifact@v4
+        with:
+          name: Veracode Pipeline-Scan Results
+          path: results.json
 
-
+      - name: Create fixes from static findings
+        id: convert
+        uses: Veracode/veracode-fix@main
+        with:
+          inputFile: filtered_results.json
+          vid: ${{ secrets.VERACODE_API_ID }}
+          vkey:${{ secrets.VERACODE_API_KEY }}
+          source_base_path_1: "com/:src/main/java/com/"
+          source_base_path_2: "WEB-INF:src/main/webapp/WEB-INF"
+          language: java
+          prComment: true
+          fixType: single
